@@ -5,22 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exam Szn !!!</title>
     <style>
+        /* Ensures padding and borders don't add to the width of elements */
+        * {
+            box-sizing: border-box;
+        }
         body {
             font-family: system-ui, -apple-system, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh; /* Allows scrolling if content is taller than the screen */
             margin: 0;
             background-color: #1e1e2e;
             color: #cdd6f4;
+            padding: 20px; /* Prevents the box from touching the screen edges on mobile */
         }
         .container {
             background-color: #313244;
-            padding: 40px;
+            padding: 40px 30px;
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             text-align: center;
+            width: 100%;       /* Take up full available width... */
+            max-width: 450px;  /* ...but stop growing at 450px */
+        }
+        /* New rules to constrain the crying cat image */
+        .container img {
+            max-width: 100%;     /* Never wider than the container */
+            height: auto;        /* Maintain aspect ratio */
+            max-height: 220px;   /* Cap the height so it doesn't dominate the screen */
+            object-fit: contain; /* Ensures the whole image stays visible */
+            border-radius: 8px;  /* Smooths the corners slightly */
+            margin-bottom: 25px; /* Adds space between the image and the switches */
         }
         h2 {
             margin-top: 0;
@@ -32,7 +48,8 @@
             flex-direction: column;
             gap: 20px;
             align-items: flex-start;
-            margin-left: 20px;
+            margin: 0 auto;      /* Centers the flex-column block inside the container */
+            width: fit-content;  /* Hugs the contents so the switches stay left-aligned to each other */
         }
         .toggle-row {
             display: flex;
@@ -47,6 +64,7 @@
             display: inline-block;
             width: 60px;
             height: 34px;
+            flex-shrink: 0; /* Prevents the switch from squishing on very narrow screens */
             margin-right: 15px;
         }
         .switch input { 
@@ -84,7 +102,7 @@
 <body>
 
 <div class="container">
-    <img src="./cryingcat.png" alt="CRYING CAT IMAGE">
+    <img src="cryingcat.png" alt="CRYING CAT IMAGE">
     <div class="switch-container">
         <label class="toggle-row">
             <div class="switch">
